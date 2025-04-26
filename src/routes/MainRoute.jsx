@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Home from "../pages/Home";
 import Error from "../pages/Error";
+import ProtectedRoute from "./ProtectedRoute";
 
 const MainRoute = () => {
   const auth = JSON.parse(localStorage.getItem("loggedin"));
@@ -12,13 +13,14 @@ const MainRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      {/* Profile only accessible if user exists, else redirect to login */}
-      <Route
-        path="/profile"
-        element={auth ? <Profile /> : <Navigate to="/login" />}
-      />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+
       <Route path="/*" element={<Error />} />
     </Routes>
   );
