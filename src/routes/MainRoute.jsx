@@ -8,7 +8,7 @@ import Error from "../pages/Error";
 import ProtectedRoute from "./ProtectedRoute";
 
 const MainRoute = () => {
-  const auth = JSON.parse(localStorage.getItem("loggedin"));
+  
 
   return (
     <Routes>
